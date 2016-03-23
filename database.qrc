@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>druglist.csv</file>
+    </qresource>
+</RCC>
