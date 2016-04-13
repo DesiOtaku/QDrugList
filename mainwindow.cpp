@@ -35,8 +35,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QFile file(":/druglist.csv");
     if (file.open(QFile::ReadOnly)) {
-        QStringList modelList;
-        //_useHash.reserve(802107);
         while(!file.atEnd()) {
             QString genName = file.readLine().trimmed();
             QString brandName = file.readLine().trimmed();
@@ -45,15 +43,8 @@ MainWindow::MainWindow(QWidget *parent) :
             _useHash[genName] = usedFor;
             _useHash[brandName] = usedFor;
 
-            if(!modelList.contains(genName)) {
-                modelList<<genName;
-            }
-
-            if(!modelList.contains(brandName)) {
-                modelList<<brandName;
-            }
         }
-        ui->drugListInput->setDrugList(modelList);
+        ui->drugListInput->setDrugList(_useHash.keys());
     }
 
     connect(ui->drugListInput,SIGNAL(drugNameChanged(QString)),this,SLOT(handleUpdateDrugName(QString)));

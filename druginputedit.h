@@ -22,6 +22,7 @@
 #include <QTextEdit>
 #include <QCompleter>
 #include <QHash>
+#include <QMouseEvent>
 
 class DrugInputEdit : public QTextEdit
 {
@@ -35,6 +36,7 @@ signals:
 
 protected:
     void keyPressEvent(QKeyEvent *e);
+    void mouseReleaseEvent(QMouseEvent * event);
 
 public slots:
     void handleForceSuggest();

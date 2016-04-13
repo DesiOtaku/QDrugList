@@ -67,6 +67,10 @@ void DrugInputEdit::keyPressEvent(QKeyEvent *e) {
     QTextCursor tc = textCursor();
     tc.select(QTextCursor::LineUnderCursor);
     QString name = tc.selectedText();
+
+    if(name.length()<3)
+        return;
+
     _completer.setCompletionPrefix(name);
     emit drugNameChanged(name);
 
@@ -100,3 +104,10 @@ void DrugInputEdit::handleCompleteDrugName(QString addName) {
 }
 
 
+void DrugInputEdit::mouseReleaseEvent(QMouseEvent *event) {
+    Q_UNUSED(event);
+    QTextCursor tc = textCursor();
+    tc.select(QTextCursor::LineUnderCursor);
+    QString name = tc.selectedText();
+    emit drugNameChanged(name);
+}
